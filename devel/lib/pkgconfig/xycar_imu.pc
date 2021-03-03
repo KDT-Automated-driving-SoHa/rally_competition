@@ -1,0 +1,8 @@
+prefix=/home/nvidia/automonous_rally/devel
+
+Name: xycar_imu
+Description: Description of xycar_imu
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rviz

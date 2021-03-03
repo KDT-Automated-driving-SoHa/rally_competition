@@ -1,0 +1,2 @@
+ar_viewer:darknet_ros/darknet_ros:darknet_ros/darknet_ros_msgs:joystick_cam:rally:usb_cam:xycar_imu:xycar_motor:xycar_ultrasonic
+-DCATKIN_DEVEL_PREFIX=/home/nvidia/automonous_rally/devel -DCMAKE_INSTALL_PREFIX=/home/nvidia/automonous_rally/install -G Unix Makefiles

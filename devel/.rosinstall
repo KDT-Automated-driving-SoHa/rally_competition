@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/nvidia/automonous_rally/devel/setup.sh

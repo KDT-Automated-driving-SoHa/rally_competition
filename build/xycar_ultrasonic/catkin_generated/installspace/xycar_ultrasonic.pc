@@ -1,0 +1,8 @@
+prefix=/home/nvidia/automonous_rally/install
+
+Name: xycar_ultrasonic
+Description: Description of xycar_ultrasonic
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
