@@ -14,17 +14,19 @@ class BACKWARD:
 
     def set_data(self, data):
         #pass
-	for i in range(5):
-	    for j in range(10):
-		set_motor(0,0)
-		time.sleep()
-
-	    for j in range(data):
-	    	set_motor(20, -25)
+	
+	for j in range(10):
+	    self.set_motor(0,0)
+	    time.sleep(0.1)
+		
+	if data==False:
+	    for j in range(3):
+	    	self.set_motor(30, -15)
 		time.sleep(0.1)
- 	    
-            for j in range(data):
-		set_motor(20,25)	
+ 	elif data:
+            for j in range(3):
+		self.set_motor(-30,15)	
 		time.sleep(0.1)
+		
     def get_motor(self):
         return self.angle, self.speed
