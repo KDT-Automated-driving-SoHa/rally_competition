@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 class BACKWARD:
-    angle = 0
-    speed = 0
     
     def __init__(self):
-        pass
+	angle = 0
+    speed = 0
+    
 
     def set_motor(self, angle, speed):
         self.angle = angle
