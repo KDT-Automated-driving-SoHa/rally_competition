@@ -59,10 +59,11 @@ while rm.get_shutdown():
 	mode="DQNQR"
     elif mode=="dqn dqn_drive_end":
 	mode="YOLOQR"
+    '''
     elif mode=="algorithm drive_to_parking_lot_1":
 	mode="PARKQR"
-    '''
-    obj[mode].set_motor(angle, speed)
+    
+    #obj[mode].set_motor(angle, speed)
     
     '''
     if mode == "DQNQR":
@@ -90,6 +91,9 @@ while rm.get_shutdown():
             continue
         
     elif mode == "PARKQR":
+	obj[]
+	angle, speed = obj[mode].get_motor() 
+        rm.set_motor(angle, speed)
         #obj[mode].set_data([10])
         if total_count<=6:
              if cnt<=2:
@@ -105,8 +109,8 @@ while rm.get_shutdown():
             rm.set_motor(0, 0)
             continue
         
-    angle, speed = obj[mode].get_motor() 
-    rm.set_motor(angle, speed)
+    #angle, speed = obj[mode].get_motor() 
+    #rm.set_motor(angle, speed)
     
     
     
