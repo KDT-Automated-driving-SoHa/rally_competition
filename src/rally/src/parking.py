@@ -11,18 +11,21 @@ class PARK:
         self.speed = 0
         self.roll, self.pitch, self.yaw = 0, 0, 0
         self.is_data = False
-    
+        self.is_back = False
         self.arData = {"DX":0.0,"DY":0.0,"DZ":0.0,"AX":0.0,"AY":0.0,"AZ":0.0,"AW":0.0}
-        pass
 
     def set_motor(self, angle, speed):
-        self.angle = angle
-        self.motor = motor
+        self.angle, self.speed = angle, speed
+	
+    def get_motor(self):
+        return self.angle, self.speed
     
     def drive(Angle,Speed):
 	    self.set_motor(Angle, Speed)
 
     def back(ang,cy):
+	self.is_back=True
+	'''
         for i in range(2):
             self.drive(0,0)
             time.sleep(0.1)
@@ -34,6 +37,7 @@ class PARK:
         for _ in range(cy//3):
             self.drive(-self.angle,-20)
             time.sleep(0.1)
+	'''
 
     def callback(Data):
    	#global arData, is_data
@@ -74,7 +78,7 @@ class PARK:
 
 	theta = math.atan(self.arData["DX"]/self.arData["DZ"])*180/math.pi if self.arData["DZ"] !=0 else 0
         w_t = 1
-        w_p = 0.5
+        #w_p = 0.5
 
         self.angle = int(theta * w_t)
 
@@ -98,5 +102,4 @@ class PARK:
         else:
             self.speed,self.angle =0,0
 
-    def get_motor(self):
-        return self.angle, self.motor
+    
