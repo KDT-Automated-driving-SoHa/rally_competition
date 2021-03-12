@@ -74,12 +74,13 @@ while rm.get_shutdown():
     if mode == "BACKWARDQR":
         #obj[mode].set_data([10])
 	if total_count<=6:
-	     if cnt<=2:
-		if cnt==2:
-		   obj[mode].set_data(False)
-	     elif cnt<=3:
+	     if cnt<=1:
+		
+		obj[mode].set_data(False)
+		cnt+=1
+	     elif cnt<=2:
 		obj[mode].set_data(True)
-	     cnt+=1
+	     	cnt=0
 	else:
 	     break
 	total_count+=1
