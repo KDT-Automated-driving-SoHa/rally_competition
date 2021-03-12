@@ -20,7 +20,7 @@ total_count=0
 
 obj = {
     #"DQNQR":DQN([256, 256], ""),
-    #"PARKQR":PARK(),
+    "PARKQR":PARK(),
     #"ULTRASONICQR":ULTRASONIC(),
     #"YOLOQR":YOLO(),
     "BACKWARDQR":BACKWARD()
@@ -42,10 +42,13 @@ while rm.get_shutdown():
             mode = qr_string
 	    print("mode : "+str(mode))
 
+    #QR code string
+    print(mode)
+    
     if mode == "":
         rm.set_motor(0, 0)
         continue
-    
+
     #elif mode=="algorithm drive_avoid_obstacle":
 	#mode="ULTRASONICQR"
     
@@ -64,8 +67,7 @@ while rm.get_shutdown():
     '''
     if mode == "DQNQR":
         obj[mode].set_data([])
-    elif mode == "PARKQR":
-        obj[mode].set_data([rm.get_ar_tags_datas])
+    
     elif mode == "YOLOQR":
         obj[mode].set_data([])
     elif mode == "ULTRASONICQR":
@@ -73,20 +75,36 @@ while rm.get_shutdown():
     '''
     if mode == "BACKWARDQR":
         #obj[mode].set_data([10])
-	if total_count<=6:
-	     if cnt<=2:
-		if cnt==2:
-		   obj[mode].set_data(False)
-	     elif cnt<=3:
-		obj[mode].set_data(True)
-	     cnt+=1
-	else:
-	     break
-	total_count+=1
-    else:
-        rm.set_motor(0, 0)
-        continue
-
+        if total_count<=6:
+            if cnt<=2:
+                if cnt==2:
+                   obj[mode].set_data(False)
+            elif cnt<=3:
+                obj[mode].set_data(True)
+            cnt+=1
+            else:
+                break
+            total_count+=1
+        else:
+            rm.set_motor(0, 0)
+            continue
+        
+    elif mode == "PARKQR":
+        #obj[mode].set_data([10])
+        if total_count<=6:
+             if cnt<=2:
+            if cnt==2:
+               obj[mode].set_data(False)
+             elif cnt<=3:
+            obj[mode].set_data(True)
+             cnt+=1
+        else:
+             break
+        total_count+=1
+        else:
+            rm.set_motor(0, 0)
+            continue
+        
     angle, speed = obj[mode].get_motor() 
     rm.set_motor(angle, speed)
     
