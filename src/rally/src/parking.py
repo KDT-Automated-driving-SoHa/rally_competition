@@ -36,7 +36,7 @@ class PARK:
             time.sleep(0.1)
 
     def callback(Data):
-   	    #global arData, is_data
+   	#global arData, is_data
 
     	if len(Data) == 0:
             self.is_data = False
@@ -63,22 +63,22 @@ class PARK:
 
 
     def set_data(self, data):
-	    #check len of data
-	    self.callback(data)
+	#check len of data
+	self.callback(data)
 
         (roll, pitch, yaw) = euler_from_quaternion((self.arData["AX"], self.arData["AY"], self.arData["AZ"], self.arData["AW"]))
 
-	    self.roll = math.degrees(roll)
+	self.roll = math.degrees(roll)
         self.pitch = math.degrees(pitch)
         self.yaw = math.degrees(yaw)
 
-	    theta = math.atan(self.arData["DX"]/self.arData["DZ"])*180/math.pi if self.arData["DZ"] !=0 else 0
+	theta = math.atan(self.arData["DX"]/self.arData["DZ"])*180/math.pi if self.arData["DZ"] !=0 else 0
         w_t = 1
         w_p = 0.5
 
         self.angle = int(theta * w_t)
 
-	    if self.is_data:
+	if self.is_data:
             if int(self.arData["DZ"]) == 0:
     	        self.speed,self.angle = 0,0
             elif int(self.arData["DZ"]) > 0 and int(self.arData["DZ"]) <= 50:
