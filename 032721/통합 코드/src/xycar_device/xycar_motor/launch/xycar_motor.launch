@@ -1,8 +1,0 @@
-<launch>
-
-  <!-- xycar_b2 -->
-  <node name="xycar_motor" pkg="xycar_motor" type="xycar_motor.py" output="screen" >
-    <param name="angle_offset" value="0" />
-  </node>
-
-</launch>
