@@ -1,0 +1,6 @@
+<launch>
+
+  <!-- main -->
+  <node name="sliding_window_driver" pkg="sliding_window" type="main_lidar.py" output="screen" />
+
+</launch>
