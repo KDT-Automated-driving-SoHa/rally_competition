@@ -5,6 +5,7 @@ import rospy
 
 import numpy as np
 
+from tf.transformations import euler_from_quaternion
 
 class ARInfo():
     def __init__(self, position, orientation):
@@ -20,9 +21,7 @@ class ARInfo():
         self.aw = orientation.w
 
         # AR의 방향(rpy)
-        self.roll,
-        self.pitch,
-        self.yaw = euler_from_quaternion((self.ax, self.ay, self.ax, self.aw))
+        self.roll, self.pitch, self.yaw = euler_from_quaternion((self.ax, self.ay, self.ax, self.aw))
 
         # AR의 방향(rpy, degree)
         self.roll_deg = np.degrees(self.roll)

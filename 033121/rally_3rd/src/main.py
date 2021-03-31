@@ -26,10 +26,10 @@ hough_line_handler = HoughLineHandler()         # Hough Line 처리
 ar_parking_handler = ARParkingHandler()         # AR 주차
 
 # 책임 연쇄 초기화
-ar_parking_handler.set_next(sliding_window_handler)
+# ar_parking_handler.set_next(sliding_window_handler)
 
-# ar_parking_handler.set_next(stop_line_handler)      # AR 주차 ---> 정지선 멈춤
-# stop_line_handler.set_next(sliding_window_handler)  # 정지선 멈춤 ---> 슬라이딩 윈도우 주행
+ar_parking_handler.set_next(stop_line_handler)      # AR 주차 ---> 정지선 멈춤
+stop_line_handler.set_next(sliding_window_handler)  # 정지선 멈춤 ---> 슬라이딩 윈도우 주행
 # stop_line_handler.set_next(hough_line_handler)
 
 handler = ar_parking_handler
@@ -60,6 +60,7 @@ while not rospy.is_shutdown():
     # 모터 정보 저장
     motor_info = handler.handle(handler_info)
 
+    # motor_info.speed = 0
     manager.publish_motor(motor_info)
 
     print "fps: {:>1.0f} | {:s}".format(fps, motor_info)

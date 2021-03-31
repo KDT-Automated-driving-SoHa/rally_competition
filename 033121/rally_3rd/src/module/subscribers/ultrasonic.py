@@ -25,4 +25,4 @@ class UltrasonicSubscriber():
             
 
     def _callback(self, msg):
-        self.raw_data(msg.data)
+        self.raw_data = msg.data

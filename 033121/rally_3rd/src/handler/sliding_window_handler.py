@@ -23,7 +23,8 @@ class SlidingWindowHandler(AbstractHandler):
         preprcessed_frame = preprocessing_sliding_window(frame)
 
         # 슬라이딩 윈도우로 motor_angle(steering_angle) 계산
-        motor_angle = self._get_steering_angle2(preprcessed_frame)
+        motor_angle = self._get_steering_angle(preprcessed_frame)
+        # motor_angle = self._get_steering_angle2(preprcessed_frame)
 
         # 설정된 2차함수에 따라 angle 값을 새로 계산
         abs_motor_angle = max(0, get_linear_steering_angle2(abs(motor_angle)))

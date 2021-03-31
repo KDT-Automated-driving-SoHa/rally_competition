@@ -423,8 +423,8 @@ def get_steering_angle_from_linear_function2(left_linear_func, right_linear_func
             cv.circle(explain_image, point, 3, (0, 0, 255), -1)
     cv.line(explain_image, tuple(rint(heading_src)), tuple(rint(heading_dst)), (255, 0, 0), 40)
     
-    cv.imshow("explain", explain_image)
-    cv.waitKey(1)
+    # cv.imshow("explain", explain_image)
+    # cv.waitKey(1)
 
     # rel_x_ratio 적용된 새로운 heading 계산
     # heading_src = tuple(rint([width//2, height]))

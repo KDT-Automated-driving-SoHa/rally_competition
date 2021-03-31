@@ -21,7 +21,7 @@ class ARSubscriber():
         self.raw_sign = None
         self.raw_parking = None
 
-        for marker in markers:
+        for marker in msg.markers:
             if marker.id == 1:
                 self.raw_sign = marker
             elif marker.id == 2:
@@ -33,7 +33,7 @@ class ARSubscriber():
             return False, None
 
         position = self.raw_sign.pose.pose.position
-        orientation = self.raw_sign.marker.pose.pose.orientation
+        orientation = self.raw_sign.pose.pose.orientation
         return True, ARInfo(position, orientation)
 
 
@@ -42,5 +42,5 @@ class ARSubscriber():
             return False, None
 
         position = self.raw_parking.pose.pose.position
-        orientation = self.raw_parking.marker.pose.pose.orientation
+        orientation = self.raw_parking.pose.pose.orientation
         return True, ARInfo(position, orientation)

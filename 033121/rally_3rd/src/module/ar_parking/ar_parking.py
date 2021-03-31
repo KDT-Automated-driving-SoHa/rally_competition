@@ -1,8 +1,8 @@
 # !/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-# from module.infos.ultrasonic_info import UltrasonicInfo
-# from module.infos.motor_info import MotorInfo
+from module.infos.ultrasonic_info import UltrasonicInfo
+from module.infos.motor_info import MotorInfo
 
 class ParkingBehavior():
     def __init__(self):
