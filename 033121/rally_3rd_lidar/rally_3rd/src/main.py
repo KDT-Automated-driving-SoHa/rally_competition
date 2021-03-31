@@ -38,6 +38,7 @@ tfcp = TrnasformCP(cp_param, K=180 / 3.14 * 1.0)
 tfcp.set_azimuth()
 
 filter_obs = DiscreateFilter(f_cut=1000, freq=10000)
+filter_obs_vel = DiscreateFilter(f_cut=1000, freq=10000)
 
 
 while not rospy.is_shutdown():
@@ -61,12 +62,12 @@ while not rospy.is_shutdown():
     processed_sliding_window = preprocessing_sliding_window(frame)
     sliding_window_motor, linear_func_left, linear_func_right = sliding_window_dirve.get_motor_info(processed_sliding_window)
 
-
-    angle_obs, explain2 = tfcp.get_segment(processed_sliding_window, camera_mks_rm, linear_func_left, linear_func_right)
+    speed = 35
+    angle_obs, explain2, speed = tfcp.get_segment(processed_sliding_window, camera_mks_rm, linear_func_left, linear_func_right, speed)
     # angle_obs = filter_obs.get_lpf(angle_obs)[0]
+    sliding_window_motor.speed = filter_obs_vel.get_lpf(speed)[0]
 
     sliding_window_motor.angle = sliding_window_motor.angle + int(angle_obs) + 8
-    sliding_window_motor.speed = 25
 
     main_motor = sliding_window_motor
 

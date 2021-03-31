@@ -30,7 +30,6 @@ class TrnasformCP():
         self.alphas = []
         self.del_alphas = param[0]
         self.number = param[1]
-        self.speed = 20
 
         self.check_cartesian_pt = 0
 
@@ -95,7 +94,7 @@ class TrnasformCP():
     def poly_right(self, data):
         return 479
 
-    def get_maxpt(self, image, data, left, right, speed):
+    def get_maxpt(self, image, data, left, right):
         max_dist_left = 0
         max_dist_right = 0
         max_ptset_left = None
@@ -130,29 +129,29 @@ class TrnasformCP():
         if num_pt[0] > num_pt[1]:
             if not max_ptset_right == None:      
                 cv2.circle(image, max_ptset_right, 5, (0, 0, 255), -1)
-                return [(max_ptset_right[0] + right(max_ptset_right[1])) * 1 // 2, max_ptset_right[1]], self.speed
+                return [(max_ptset_right[0] + right(max_ptset_right[1])) * 1 // 2, max_ptset_right[1]]
             else: 
                 cv2.circle(image, max_ptset_left, 5, (0, 0, 255), -1)
-                return [(max_ptset_left[0] + right(max_ptset_left[1]))* 1 // 2, max_ptset_left[1]], self.speed
+                return [(max_ptset_left[0] + right(max_ptset_left[1]))* 1 // 2, max_ptset_left[1]]
                 
         elif num_pt[0] < num_pt[1]:
             if not max_ptset_left == None:    
                 cv2.circle(image, max_ptset_left, 5, (0, 0, 255), -1)
-                return [(max_ptset_left[0] + left(max_ptset_left[1])) * 1 // 2, max_ptset_left[1]], self.speed
+                return [(max_ptset_left[0] + left(max_ptset_left[1])) * 1 // 2, max_ptset_left[1]]
             else: 
                 cv2.circle(image, max_ptset_right, 5, (0, 0, 255), -1)
-                return [(max_ptset_right[0] + left(max_ptset_right[1])) * 1 // 2, max_ptset_right[1]], self.speed
-        return [240, 240], speed
+                return [(max_ptset_right[0] + left(max_ptset_right[1])) * 1 // 2, max_ptset_right[1]]
+        return [240, 240]
 
-    def get_segment(self, image, cp, left, right, speed):
+    def get_segment(self, image, cp, left, right):
         if left == None and right == None:
             target = [240, 240]
         elif left == None:
-            target, speed = self.get_maxpt(image, cp, self.poly_left, right, speed)
+            target = self.get_maxpt(image, cp, self.poly_left, right)
         elif right == None:
-            target, speed = self.get_maxpt(image, cp, left, self.poly_right, speed)
+            target = self.get_maxpt(image, cp, left, self.poly_right)
         else:
-            target, speed = self.get_maxpt(image, cp, left, right, speed)
+            target = self.get_maxpt(image, cp, left, right)
         # if target[1] >= 450:
         #     target[1] = 450
         slope = np.arctan(-(240 - target[0])/((479 + self.Extend_roi*self.m_to_PIXEL + 10) - target[1]))
@@ -160,7 +159,7 @@ class TrnasformCP():
         print(target)
         angle = self.K_avoidance * slope
         # print(angle)
-        return angle, image, speed
+        return angle, image, 
 
 ax1 = None
 ax2 = None
